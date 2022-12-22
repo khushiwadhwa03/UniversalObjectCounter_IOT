@@ -1,0 +1,116 @@
+.newnavbar
+{
+    height: 10vh;
+    overflow: hidden;
+    border: 5px outset #9f4eb1;
+    background-attachment: fixed;
+    text-decoration: none !important;
+    margin-top: 0px;
+    z-index: 999;
+    position: fixed;
+    width: 100vw;
+    background-image: url("../static/Media/1.jpg");
+   padding: 0px;
+    
+}
+.newnavbar a
+{
+    font-family: "Dosis",sans-serif;
+    color: #fbf6ff;
+    font-size : 18px;
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 15px;
+    float:left;
+    text-align: center;
+    text-decoration:none;
+    top  :0;
+}
+.newnavbar a:hover
+{
+    background-color: #f41997;
+    color: #e1ffa4;
+}
+.nav-img
+{
+    float:right !important;
+    padding: 0px 15px !important;
+
+}
+
+.nav-img:hover
+{
+    background-color:	#B284BE !important;
+}
+.van-a
+{
+    padding: 5px 5px !important;
+}
+.van-i
+{
+    width: 80px;
+    height: 80px;
+}
+
+.containers
+{
+    height: 100vh;
+    overflow: hidden;
+    width:100vw;
+    background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url("../static/Media/9.jpg");
+    background-color: cyan;
+    background-attachment: fixed;
+    background-size:100% 100%;
+    border: 1px outset purple;
+    background-repeat:no-repeat;
+    vertical-align: middle;
+    position: relative;
+    margin: 0;
+
+}
+.dummy
+{
+    height: 10vh;
+    color:white;
+}
+.heading
+{
+    text-shadow: 2px 2px white;
+    color: rgb(207, 123, 137);
+}
+.heading2{
+    color: rgb(228, 120, 66);
+}
+
+.graphTop
+{
+    background-color: #ffe2f6   !important;
+    height: 37.5vh;
+    width: 50vw;
+    margin-top: 5px;
+    align-self:  center;
+}
+.graphAll
+{
+
+}
+.graphEach
+{
+    width: 47vw;
+    height: 50%;
+    float: left;
+
+}
+
+.an{
+    font-family: "Dosis",sans-serif;
+    font-size: larger;
+    text-shadow: 0.5px 0.5px purple;
+    color: blue;
+
+}
+#NW { padding-left:1%;top: 0;   left: 0;   background: #c3ffe8 }
+#NE { padding-left:1%;top: 0;   left: 50% ; background: #ffe8bd;  }
+#SW { padding-left:1%;top: 50%; left: 0;   background: #ffe8bd}
+#SE { padding-left:1%;top: 50%; left: 50%; background: #c3ffe8  }
+

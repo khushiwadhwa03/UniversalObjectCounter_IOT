@@ -1,0 +1,254 @@
+<html>
+<head>
+	<link rel="icon" type="image/xicon" href="https://upload.wikimedia.org/wikipedia/commons/1/17/Color_icon_purple.svg">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap" rel="stylesheet">
+
+	<title>North Mess</title>
+	<link rel="stylesheet" href="../static/styles.css">
+	<script src="./myscripts.js"></script>
+
+	<script	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+	</script>
+	<link href= "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+		  integrity="sha384giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	<style>
+		.container{
+			background-image: url("../static/Media/four.jpg");
+			border-radius: 40%;
+		}
+		p{
+			text-align: center;
+		}
+	</style>
+
+</head>
+
+<body onload="load()">
+
+<!-- For Navbar -->
+<div class="newnavbar" >
+	<a class="nav-img"> <img  class="van-i" src="../static/Media/2.webp"> </a>
+	<a href="#myChart"> Current occupancy </a>
+	<a href="#TempChart"> Comparision </a>
+	<a href="#HumidChart"> Temperature </a>
+	<a href="#Chart4">And Humidity </a>
+	<a href="#Chart5"> Info </a>
+
+</div> 
+<div class="dummy"> You shall not see it </div>
+<div class="containers"><!-- For Counter -->
+
+
+	<p>
+	<div class="heading d-flex justify-content-center fs-1 fw-bold ">Welcome To Workspaces </div>
+	<div class="heading2 d-flex justify-content-center fs-1 fw-bold ">Counter of people in workspaces</div>
+	</p>
+	<p>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm">
+				<p id='0101' class="fs-2 text-light">0</p>
+				<p class="text-light">Occupancy of Workspaces</p>
+			</div>
+			<div class="col-sm">
+				<p id='0102' class="fs-2 text-light">876</p>
+				<p class="text-light">Temperature</p>
+			</div>
+			<div class="col-sm">
+				<p id='0103' class="fs-2 text-light">0</p>
+				<p class="text-light">Humidity</p>
+			</div>
+		</div>
+
+	</div>
+	<center>
+	<div class="graphTop">
+		<canvas id="myChart" style="width:100%;max-width:370px"></canvas>
+		
+	</div>
+	</center>
+</div>
+
+<p class="an">
+<br>Analysis : 
+</p>
+	<!-- For four graphs -->
+	<div class="graphAll">
+
+		<div class="graphEach" id="NE" >
+			<canvas id="TempChart" style="width:100%;max-width:45vw"></canvas>
+		</div>
+		<div class="graphEach" id="NW"> 
+			<canvas id="HumidChart" style="width:100%;max-width:45vw"></canvas>	
+		</div>
+		<div class="graphEach" id ="SE"> 
+			<canvas id="Chart4" style="width:100%;max-width:45vw"></canvas> </div>
+		<div class="graphEach" id="SW">
+			 <canvas id="Chart5" style="width:100%;max-width:45vw"></canvas>
+		 </div>
+
+	</div>
+
+
+	<script>
+		function myFunc(v)
+		{
+			return v
+		}
+		//var xValues = [12,13,14,15,16]
+		 var xValues =JSON.parse( myFunc({{numx | tojson}}))
+		var barcolors = ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"]
+		//var yValues = [123,234,120,45,56]
+		/*xValues = myFunc({{numx | tojson}})
+		*/
+		 var yValues = JSON.parse(myFunc({{numy | tojson}}))
+		console.log(yValues)
+		console.log(xValues)
+		
+		var myChart = new Chart("myChart", {
+			type: "line",
+			data: {
+				labels: xValues,
+				datasets: [{
+					label: "Population of Workspaces",
+					backgroundColor: "#bd433a",
+					data: yValues
+				}]
+			},
+			options: {}
+		});
+
+	
+		var barcolors2 = ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"]
+		
+		 var TempY = JSON.parse(myFunc({{Temp | tojson}}))
+				
+		var TempChart = new Chart("TempChart", {
+			type: "bar",
+			data: {
+				labels: xValues,
+				datasets: [{
+					label: "Temperature",
+					backgroundColor: "#1fd1a5",
+					data: TempY
+				}]
+			},
+			options: {}
+		});
+
+		var barcolors3 = ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"]
+		
+		var HumidY = JSON.parse(myFunc({{Humid | tojson}}))
+				
+		var HumidChart = new Chart("HumidChart", {
+			type: "bar",
+			data: {
+				labels: xValues,
+				datasets: [{
+					label: "Humidity",
+					backgroundColor: "#d11fa5",
+					data: HumidY
+				}]
+			},
+			options: {}
+		});
+		
+		
+		// People vs Temp
+		var barcolors4 = ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"]
+		var Chart4 = new Chart("Chart4", {
+			type: "line",
+			data: {
+				labels: xValues,
+				datasets: [{
+					label: "People",
+					borderColor: "#bde04a",
+					data: yValues,
+					fill: false
+				},{
+					label: "Temperature",
+					borderColor: "#0e7d17",
+					data: TempY,
+					fill: false
+				}]
+			},
+			options: {}
+		});
+		
+		
+		// People vs Humidity
+		var barcolors5 = ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"]
+		var Chart5 = new Chart("Chart5", {
+			type: "line",
+			data: {
+				labels: xValues,
+				datasets: [{
+					label: "People",
+					borderColor: "#bde04a",
+					data: yValues,
+					fill: false
+				},{
+					label: "Humidity",
+					borderColor: "#db9737",
+					data: HumidY,
+					fill: false
+				}]
+			},
+			options: {}
+		});
+	</script>
+	<!-- <script>
+		setInterval(() => {
+			location.reload()
+		}, 1000);
+	</script> -->
+	<script>
+
+		
+		function animate(obj, initVal, lastVal, duration) {
+			let startTime = null;
+
+			//get the current timestamp and assign it to the currentTime variable
+			let currentTime = Date.now();
+
+			//pass the current timestamp to the step function
+			const step = (currentTime ) => {
+
+				//if the start time is null, assign the current time to startTime
+				if (!startTime) {
+					startTime = currentTime ;
+				}
+
+				//calculate the value to be used in calculating the number to be displayed
+				const progress = Math.min((currentTime - startTime)/ duration, 1);
+
+				//calculate what to be displayed using the value gotten above
+				obj.innerHTML = Math.floor(progress * (lastVal - initVal) + initVal);
+
+				//checking to make sure the counter does not exceed the last value (lastVal)
+				if (progress < 1) {
+					window.requestAnimationFrame(step);
+				} else {
+					window.cancelAnimationFrame(window.requestAnimationFrame(step));
+				}
+			};
+			//start animating
+			window.requestAnimationFrame(step);
+		}
+		let text1 = document.getElementById('0101');
+		let text2 = document.getElementById('0102');
+		let text3 = document.getElementById('0103');
+		const load = () => {
+			animate(text1, 0, {{num}}, 1000);
+			animate(text2, 0, {{lastT}}, 1000);
+			animate(text3, 0, {{lastH}}, 1000);
+		}
+	</script>
+</body>
+</html>
+
+
